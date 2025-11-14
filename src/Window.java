@@ -3,6 +3,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import static java.awt.Font.BOLD;
 
+static class CreationPage extends  JFrame {
+
+    public CreationPage() {
+
+        setSize(new Dimension(700, 1000));
+
+        setVisible(true);
+    }
+}
+
 static class HomeScreen extends JFrame {
 
     public HomeScreen() {
@@ -31,25 +41,61 @@ static class HomeScreen extends JFrame {
                     label.setText("Login | Success");
                     label.setForeground(new Color(255, 255, 255));
                     add(label);
-                    getContentPane().setBackground(new Color(21, 71, 52));
 
-                    boolean isValid = !user_choice.getText().startsWith("Admin");
-                    setVisible(isValid);
+                    JCheckBox ExtraBox = new JCheckBox();
+                    ExtraBox.setText("Extra Options");
+                    getContentPane().setBackground(new Color(21, 71, 52));
+                    window.add(ExtraBox);
+                    JPanel panel = new JPanel();
+                    window.setLayout(new GridBagLayout());
+                    panel.setLayout(new GridBagLayout());
+
+                    ExtraBox.addActionListener(_ -> {
+                        if (ExtraBox.isSelected()) {
+
+                            CreationPage page = new CreationPage();
+                            boolean isPageVisible = !user_choice.getText().contains("Extra");
+
+                            if (isPageVisible) {
+
+                                try {
+                                    label.setText("Closing...");
+                                    Thread.sleep(1000);
+                                    page.setVisible(true);
+                                    window.setVisible(false);
+                                    setVisible(false);
+
+                                } catch (InterruptedException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                            }
+
+                        }
+
+                    });
+
                 }
 
                 if (user_choice.getText().contains("User")) {
 
                     window.setVisible(true);
                     label.setLayout(new FlowLayout());
-                    label.setFont(new Font("sans-serif", BOLD, 20));
+                    label.setFont(new Font("sans-serif", BOLD, 18));
 
                     getContentPane().setBackground(new Color(255, 0, 0));
-                    label.setText("Login | Failed");
-                    label.setForeground(new Color(255, 255, 255));
-                    add(label);
-
                     boolean isValid = !user_choice.getText().startsWith("User");
-                    setVisible(isValid);
+                    label.setText("Login | Failed");
+
+                    if (isValid) {
+                        label.setForeground(new Color(255, 255, 255));
+                        add(label);
+                        setVisible(true);
+                    }
+
+                    else {
+                        add(label);
+                        setVisible(false);
+                    }
                 }
             }
         });
@@ -65,34 +111,7 @@ static class Window extends JFrame {
 
     public Window() {
 
-        JCheckBox darkmode = new JCheckBox();
-        darkmode.setText("Dark Mode");
         JLabel label = new JLabel();
-
-        JLabel label2 = new JLabel();
-        add(label2);
-        label2.setFont(new Font("sans-serif", BOLD, 18));
-
-        darkmode.addActionListener(_ -> {
-            if (darkmode.isSelected()) {
-                label.setText("Dark Mode Enabled");
-                label2.setText(String.valueOf(LocalDate.now()));
-
-                add(label);
-                add(label2);
-                getContentPane().setBackground(new Color(10, 10, 10));
-                label.setFont(new Font("sans-serif", BOLD, 18));
-
-            }
-            else {
-                label.setText("Dark Mode Disabled");
-                label.setFont(new Font("sans-serif", BOLD, 18));
-                getContentPane().setBackground(new Color(10, 10, 10));
-
-            }
-         });
-
-        add(darkmode);
         setSize(400, 700);
         setResizable(false);
 
@@ -122,6 +141,8 @@ static class Window extends JFrame {
                 }
 
             }
+
+
 
         });
 
