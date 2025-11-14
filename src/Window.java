@@ -5,6 +5,34 @@ static class Window extends JFrame {
 
     public Window() {
 
+
+        JCheckBox lightmode = new JCheckBox();
+        lightmode.setText("Light Mode");
+
+        lightmode.addActionListener(_ -> {
+            if (lightmode.isSelected()) {
+                getContentPane().setForeground(new Color(255, 255, 255));
+            }
+            else {
+                lightmode.setEnabled(false);
+                lightmode.setVisible(false);
+            }
+        });
+
+        JCheckBox darkmode = new JCheckBox();
+        darkmode.setText("Dark Mode");
+
+        darkmode.addActionListener(_ -> {
+            if (darkmode.isSelected()) {
+                getContentPane().setBackground(new Color(10, 10, 10));
+            }
+            else {
+                darkmode.setEnabled(false);
+                darkmode.setVisible(false);
+            }
+         });
+
+        add(darkmode);
         setSize(400, 700);
         setResizable(false);
 
@@ -12,6 +40,7 @@ static class Window extends JFrame {
         JCheckBox option = new JCheckBox();
         option.setText("iCrazyTeddy");
         add(option);
+        add(lightmode);
 
         JCheckBox option2 = new JCheckBox();
         option2.setText("XpertThief");
@@ -35,6 +64,7 @@ static class Window extends JFrame {
                 }
 
             }
+
         });
 
 
