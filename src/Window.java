@@ -1,8 +1,63 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
 
 import static java.awt.Font.BOLD;
+
+static class HomeScreen extends JFrame {
+
+    public HomeScreen() {
+
+        setSize(new Dimension(300, 600));
+        setResizable(false);
+
+        getContentPane().setLayout(new FlowLayout());
+        JTextField user_choice = new JTextField(10);
+        user_choice.setPreferredSize(new Dimension(190, 29));
+        add(user_choice);
+
+        JButton submit = new JButton("Submit");
+
+        submit.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JLabel label = new JLabel();
+                Window window = new Window();
+
+                if (user_choice.getText().contains("Admin")) {
+
+                    window.setVisible(true);
+                    label.setLayout(new FlowLayout());
+                    label.setFont(new Font("sans-serif", BOLD, 18));
+                    label.setText("Login | Success");
+                    label.setForeground(new Color(255, 255, 255));
+                    add(label);
+                    getContentPane().setBackground(new Color(21, 71, 52));
+
+                }
+
+                if (user_choice.getText().contains("User")) {
+
+                    window.setVisible(true);
+                    label.setLayout(new FlowLayout());
+                    label.setFont(new Font("sans-serif", BOLD, 20));
+
+
+                    getContentPane().setBackground(new Color(255, 0, 0));
+                    label.setText("Login | Failed");
+                    label.setForeground(new Color(255, 255, 255));
+                    add(label);
+
+                }
+            }
+        });
+
+        add(user_choice, BorderLayout.SOUTH);
+        add(submit, BorderLayout.SOUTH);
+    }
+
+}
+
 
 static class Window extends JFrame {
 
@@ -92,8 +147,19 @@ static class Window extends JFrame {
 
 }
 
-void main()  {
+void main() {
 
-    Window window = new Window();
-    window.setVisible(true);
+    HomeScreen homePage = new HomeScreen();
+
+    boolean isTrue = homePage.isEnabled();
+    if (isTrue) {
+        homePage.setVisible(true);
+    }
+
+    else {
+        Window window = new Window();
+        window.setVisible(true);
+        homePage.setVisible(false);
+    }
+
 }
