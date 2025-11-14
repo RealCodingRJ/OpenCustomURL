@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import static java.awt.Font.BOLD;
 
-
-
 static class CreationPage extends  JFrame {
 
     public CreationPage() {
@@ -36,21 +34,16 @@ static class HomeScreen extends JFrame {
                 Window window = new Window();
 
                 if (user_choice.getText().contains("Admin")) {
-
                     window.setVisible(true);
                     label.setLayout(new FlowLayout());
                     label.setFont(new Font("sans-serif", BOLD, 18));
-                    label.setText("Login | Success");
-                    label.setForeground(new Color(255, 255, 255));
-                    add(label);
+
+                    getContentPane().setBackground(new Color(255, 0, 0));
 
                     JCheckBox ExtraBox = new JCheckBox();
                     ExtraBox.setText("Extra Options");
                     getContentPane().setBackground(new Color(21, 71, 52));
-
-                    JPanel panel = new JPanel();
                     window.setLayout(new GridBagLayout());
-                    panel.setLayout(new GridBagLayout());
 
                     window.add(ExtraBox);
 
@@ -61,32 +54,6 @@ static class HomeScreen extends JFrame {
                             setVisible(false);
                             window.setVisible(false);
                             setVisible(false);
-                            JTextField ytTextField = new JTextField(20);
-                            add(ytTextField);
-
-                            JButton button = new JButton("Submit");
-                            page.setLayout(new FlowLayout());
-                            page.add(button);
-                            JTextField ytTextName = new JTextField(10);
-                            page.add(ytTextName);
-
-                            JTextField appendTextName = new JTextField(10);
-
-                            button.addActionListener(new AbstractAction() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-
-                                    if (ytTextName.getText().contains("Y")) {
-                                        JCheckBox ytChannelName = new JCheckBox();
-                                        window.add(appendTextName);
-                                        window.add(ytChannelName);
-
-                                        ytChannelName.setText(String.valueOf(appendTextName));
-
-                                    }
-
-                                }
-                            });
 
                         }
 
@@ -108,9 +75,7 @@ static class HomeScreen extends JFrame {
                         label.setForeground(new Color(255, 255, 255));
                         add(label);
                         setVisible(true);
-                    }
-
-                    else {
+                    } else {
                         add(label);
                         setVisible(false);
                     }
@@ -121,15 +86,12 @@ static class HomeScreen extends JFrame {
         add(user_choice, BorderLayout.SOUTH);
         add(submit, BorderLayout.SOUTH);
     }
-
 }
-
 
 static class Window extends JFrame {
 
     public Window() {
 
-        JLabel label = new JLabel();
         setSize(400, 700);
         setResizable(false);
 
@@ -141,7 +103,7 @@ static class Window extends JFrame {
         JCheckBox option2 = new JCheckBox();
         option2.setText("XpertThief");
         add(option2);
-        add(label);
+
 
         option.addActionListener(_ -> {
             if (option.isSelected()) {
@@ -149,18 +111,17 @@ static class Window extends JFrame {
                 try {
                     URL url = URI.create("https://www.youtube.com/iCrazyteddy").toURL();
                     Desktop.getDesktop().browse(URI.create(url.toString()));
+                    JLabel label2 = new JLabel();
+                    label2.setForeground(new Color(255, 255, 255));
+                    label2.setFont(new Font("sans-serif", BOLD, 18));
+                    label2.setText(url.toString());
+                    add(label2);
                     getContentPane().setBackground(new Color(10, 10, 10));
-                    label.setFont(new Font("sans-serif", BOLD, 18));
-                    label.setText(url.toString());
-                    label.setForeground(new Color(255, 255, 255));
-
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
 
             }
-
-
 
         });
 
@@ -173,9 +134,12 @@ static class Window extends JFrame {
 
                     Desktop.getDesktop().browse(URI.create(url.toString()));
                     getContentPane().setBackground(new Color(10, 10, 10));
+
+                    JLabel label = new JLabel();
                     label.setFont(new Font("sans-serif", BOLD, 18));
                     label.setText(url.toString());
                     label.setForeground(new Color(255, 255, 255));
+                    add(label);
 
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -187,15 +151,19 @@ static class Window extends JFrame {
 
 }
 
+
+
 void main() {
 
     HomeScreen homePage = new HomeScreen();
     Window window = new Window();
 
     if (homePage.isEnabled()) {
+        window.setVisible(false);
         homePage.setVisible(true);
 
     } else if (window.isEnabled()){
-        window.setVisible(false);
+        window.setVisible(true);
+        homePage.setVisible(false);
     }
 }
