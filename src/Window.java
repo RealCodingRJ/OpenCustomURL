@@ -84,7 +84,6 @@ static class Window extends JFrame {
             }
             else {
                 label.setText("Dark Mode Disabled");
-                add(label);
                 label.setFont(new Font("sans-serif", BOLD, 18));
                 getContentPane().setBackground(new Color(10, 10, 10));
 
