@@ -1,34 +1,32 @@
 import javax.swing.*;
 import java.awt.*;
 
+
+import static java.awt.Font.BOLD;
+
 static class Window extends JFrame {
 
     public Window() {
 
-
-        JCheckBox lightmode = new JCheckBox();
-        lightmode.setText("Light Mode");
-
-        lightmode.addActionListener(_ -> {
-            if (lightmode.isSelected()) {
-                getContentPane().setForeground(new Color(255, 255, 255));
-            }
-            else {
-                lightmode.setEnabled(false);
-                lightmode.setVisible(false);
-            }
-        });
-
         JCheckBox darkmode = new JCheckBox();
         darkmode.setText("Dark Mode");
+        JLabel label = new JLabel();
 
         darkmode.addActionListener(_ -> {
             if (darkmode.isSelected()) {
+                label.setText("Dark Mode Enabled");
+                add(label);
                 getContentPane().setBackground(new Color(10, 10, 10));
+                label.setFont(new Font("sans-serif", BOLD, 18));
+
             }
             else {
-                darkmode.setEnabled(false);
-                darkmode.setVisible(false);
+                label.setText("Dark Mode Disabled");
+                add(label);
+
+                label.setFont(new Font("sans-serif", BOLD, 18));
+                getContentPane().setBackground(new Color(10, 10, 10));
+
             }
          });
 
@@ -40,12 +38,10 @@ static class Window extends JFrame {
         JCheckBox option = new JCheckBox();
         option.setText("iCrazyTeddy");
         add(option);
-        add(lightmode);
 
         JCheckBox option2 = new JCheckBox();
         option2.setText("XpertThief");
         add(option2);
-        JLabel label = new JLabel();
         add(label);
 
         option.addActionListener(_ -> {
@@ -55,7 +51,7 @@ static class Window extends JFrame {
                     URL url = URI.create("https://www.youtube.com/iCrazyteddy").toURL();
                     Desktop.getDesktop().browse(URI.create(url.toString()));
                     getContentPane().setBackground(new Color(10, 10, 10));
-                    label.setFont(new Font("sans-serif", Font.BOLD, 18));
+                    label.setFont(new Font("sans-serif", BOLD, 18));
                     label.setText(url.toString());
                     label.setForeground(new Color(255, 255, 255));
 
@@ -76,7 +72,7 @@ static class Window extends JFrame {
 
                     Desktop.getDesktop().browse(URI.create(url.toString()));
                     getContentPane().setBackground(new Color(10, 10, 10));
-                    label.setFont(new Font("sans-serif", Font.BOLD, 18));
+                    label.setFont(new Font("sans-serif", BOLD, 18));
                     label.setText(url.toString());
                     label.setForeground(new Color(255, 255, 255));
 
