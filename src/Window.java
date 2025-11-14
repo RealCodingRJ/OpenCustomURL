@@ -5,7 +5,7 @@ static class Window extends JFrame {
 
     public Window() {
 
-        setSize(500, 500);
+        setSize(400, 700);
         setResizable(false);
 
         setLayout(new FlowLayout());
@@ -26,8 +26,10 @@ static class Window extends JFrame {
                     URL url = URI.create("https://www.youtube.com/iCrazyteddy").toURL();
                     Desktop.getDesktop().browse(URI.create(url.toString()));
                     getContentPane().setBackground(new Color(10, 10, 10));
-                    label.setFont(new Font("sans-serif", Font.BOLD, 20));
+                    label.setFont(new Font("sans-serif", Font.BOLD, 18));
                     label.setText(url.toString());
+                    label.setForeground(new Color(255, 255, 255));
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -44,8 +46,9 @@ static class Window extends JFrame {
 
                     Desktop.getDesktop().browse(URI.create(url.toString()));
                     getContentPane().setBackground(new Color(10, 10, 10));
-                    label.setFont(new Font("sans-serif", Font.BOLD, 20));
+                    label.setFont(new Font("sans-serif", Font.BOLD, 18));
                     label.setText(url.toString());
+                    label.setForeground(new Color(255, 255, 255));
 
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
