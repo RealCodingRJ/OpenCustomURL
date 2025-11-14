@@ -1,7 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
 import static java.awt.Font.BOLD;
+
+static class AppendYouTubeLabels extends  JFrame {
+
+    public AppendYouTubeLabels() {
+
+        setSize(new Dimension(100, 300));
+        setVisible(true);
+    }
+}
 
 static class CreationPage extends  JFrame {
 
@@ -49,13 +59,40 @@ static class HomeScreen extends JFrame {
                     getContentPane().setBackground(new Color(21, 71, 52));
                     window.add(ExtraBox);
                     JPanel panel = new JPanel();
+                    CreationPage page = new CreationPage();
                     window.setLayout(new GridBagLayout());
                     panel.setLayout(new GridBagLayout());
+
+                    JTextField appendYouTubeChannel = new JTextField();
+                    page.add(appendYouTubeChannel);
+
+                    if (appendYouTubeChannel.getText().contains("Y")) {
+
+                        AppendYouTubeLabels appendYT = new AppendYouTubeLabels();
+                        appendYT.setVisible(true);
+                        JTextField appendYouTubeLabelWindow = new JTextField();
+                        getContentPane().add(appendYouTubeLabelWindow);
+                        JButton button = new JButton("Y | N");
+
+                        button.addActionListener(new AbstractAction() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                if (appendYouTubeChannel.getText().contains("Y")) {
+
+                                    JTextField appendToList = new JTextField(10);
+                                    page.add(appendToList);
+
+
+                                }
+
+                            }
+                        });
+
+                    }
 
                     ExtraBox.addActionListener(_ -> {
                         if (ExtraBox.isSelected()) {
 
-                            CreationPage page = new CreationPage();
                             boolean isPageVisible = !user_choice.getText().contains("Extra");
 
                             if (isPageVisible) {
