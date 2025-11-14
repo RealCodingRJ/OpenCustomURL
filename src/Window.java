@@ -12,10 +12,17 @@ static class Window extends JFrame {
         darkmode.setText("Dark Mode");
         JLabel label = new JLabel();
 
+        JLabel label2 = new JLabel();
+        add(label2);
+        label2.setFont(new Font("sans-serif", BOLD, 18));
+
         darkmode.addActionListener(_ -> {
             if (darkmode.isSelected()) {
                 label.setText("Dark Mode Enabled");
+                label2.setText(String.valueOf(LocalDate.now()));
+
                 add(label);
+                add(label2);
                 getContentPane().setBackground(new Color(10, 10, 10));
                 label.setFont(new Font("sans-serif", BOLD, 18));
 
@@ -23,7 +30,6 @@ static class Window extends JFrame {
             else {
                 label.setText("Dark Mode Disabled");
                 add(label);
-
                 label.setFont(new Font("sans-serif", BOLD, 18));
                 getContentPane().setBackground(new Color(10, 10, 10));
 
