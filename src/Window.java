@@ -41,6 +41,8 @@ static class HomeScreen extends JFrame {
                     label.setText("Login | Success");
                     label.setForeground(new Color(255, 255, 255));
                     add(label);
+                    window.setVisible(true);
+                    setVisible(false);
 
                     JCheckBox ExtraBox = new JCheckBox();
                     ExtraBox.setText("Extra Options");
