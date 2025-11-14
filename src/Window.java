@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
 import static java.awt.Font.BOLD;
+
+
 
 static class CreationPage extends  JFrame {
 
@@ -60,6 +61,33 @@ static class HomeScreen extends JFrame {
                             setVisible(false);
                             window.setVisible(false);
                             setVisible(false);
+                            JTextField ytTextField = new JTextField(20);
+                            add(ytTextField);
+
+                            JButton button = new JButton("Submit");
+                            page.setLayout(new FlowLayout());
+                            page.add(button);
+                            JTextField ytTextName = new JTextField(10);
+                            page.add(ytTextName);
+
+                            JTextField appendTextName = new JTextField(10);
+
+                            button.addActionListener(new AbstractAction() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+
+                                    if (ytTextName.getText().contains("Y")) {
+                                        JCheckBox ytChannelName = new JCheckBox();
+                                        window.add(appendTextName);
+                                        window.add(ytChannelName);
+
+                                        ytChannelName.setText(String.valueOf(appendTextName));
+
+                                    }
+
+                                }
+                            });
+
                         }
 
                     });
