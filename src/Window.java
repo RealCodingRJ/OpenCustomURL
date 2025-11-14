@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-
 import static java.awt.Font.BOLD;
 
 static class HomeScreen extends JFrame {
@@ -33,6 +32,11 @@ static class HomeScreen extends JFrame {
                     label.setForeground(new Color(255, 255, 255));
                     add(label);
                     getContentPane().setBackground(new Color(21, 71, 52));
+
+                    boolean isValid = !user_choice.getText().startsWith("Admin");
+
+
+                    setVisible(isValid);
 
                 }
 
@@ -149,16 +153,12 @@ static class Window extends JFrame {
 void main() {
 
     HomeScreen homePage = new HomeScreen();
+    Window window = new Window();
 
-    boolean isTrue = homePage.isEnabled();
-    if (isTrue) {
+    if (homePage.isEnabled()) {
         homePage.setVisible(true);
-    }
 
-    else {
-        Window window = new Window();
-        window.setVisible(true);
-        homePage.setVisible(false);
+    } else {
+        window.setVisible(false);
     }
-
 }
