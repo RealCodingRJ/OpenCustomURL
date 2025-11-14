@@ -34,10 +34,7 @@ static class HomeScreen extends JFrame {
                     getContentPane().setBackground(new Color(21, 71, 52));
 
                     boolean isValid = !user_choice.getText().startsWith("Admin");
-
-
                     setVisible(isValid);
-
                 }
 
                 if (user_choice.getText().contains("User")) {
@@ -46,12 +43,13 @@ static class HomeScreen extends JFrame {
                     label.setLayout(new FlowLayout());
                     label.setFont(new Font("sans-serif", BOLD, 20));
 
-
                     getContentPane().setBackground(new Color(255, 0, 0));
                     label.setText("Login | Failed");
                     label.setForeground(new Color(255, 255, 255));
                     add(label);
 
+                    boolean isValid = !user_choice.getText().startsWith("User");
+                    setVisible(isValid);
                 }
             }
         });
@@ -158,7 +156,7 @@ void main() {
     if (homePage.isEnabled()) {
         homePage.setVisible(true);
 
-    } else {
+    } else if (window.isEnabled()){
         window.setVisible(false);
     }
 }
